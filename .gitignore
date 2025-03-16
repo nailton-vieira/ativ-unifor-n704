@@ -1,2 +1,2 @@
-bin/
-.vscode/
+# Diretorio de dependencias
+node_modules/
