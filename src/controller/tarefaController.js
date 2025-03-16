@@ -20,7 +20,7 @@ const getTarefaById = (req, res) => {
 };
 
 const createTarefa = (req, res) => {
-    const novaTarefa = tarefaModel.createTarefa(req.body.name);
+    const novaTarefa = tarefaModel.createTarefa(req.body.nomeTarefa);
     res.status(201).json(novaTarefa);
 };
 
