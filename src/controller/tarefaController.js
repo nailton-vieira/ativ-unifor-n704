@@ -6,8 +6,8 @@ const tarefaModel = require('../model/tarefaModel');
 const getAllTarefas = (req, res) => {
     const tarefas = tarefaModel.getAllTarefas();
     // Simulação de list comprehension (usando map)
-    const tarefaNomes = items.map(tarefa => tarefa.nomeTarefa); 
-    res.json({ items, nomes: tarefaNomes });
+    const tarefaNomes = tarefas.map(tarefa => tarefa.nomeTarefa); 
+    res.json({ tarefas, nomes: tarefaNomes });
 };
 
 const getTarefaById = (req, res) => {
