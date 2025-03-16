@@ -1,7 +1,7 @@
 const express = require('express');
 
 const app = express();
-const tarefaRoutes = require('./routes/tarefa.route');
+const tarefaRoutes = require('./routes/tarefaRoute');
 // Middleware para permitir o uso de JSON no corpo das requisições
 
 app.use(express.json());

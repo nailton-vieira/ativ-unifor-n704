@@ -1,3 +1,0 @@
-
-const tarefaModel = require('../model/tarefaModel');
-
