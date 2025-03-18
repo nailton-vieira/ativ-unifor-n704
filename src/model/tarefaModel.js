@@ -1,10 +1,10 @@
 
-let data = [
+//let data = [
 
-    { id: 1, nomeTarefa: 'Estudar' },
-    { id: 2, nomeTarefa: 'codar' },
+   // { id: 1, nomeTarefa: 'Estudar' },
+    //{ id: 2, nomeTarefa: 'codar' },
     
-];
+//];
 
 // Função de alta ordem: retorna uma função para gerar IDs
 const createIdGenerator = () => {
