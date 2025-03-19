@@ -14,15 +14,18 @@ const getAllTarefas = async (req, res) => {
       };
 
 
-
-const getTarefaById = (req, res) => {
-    const tarefa = tarefaModel.getTarefaById(parseInt(req.params.id));
-    if (tarefa) {
-        res.json(tarefa);
-    } else {
-        res.status(404).json({ message: 'Tarefa não encontrada' });
+// Buscar um tarefa pelo ID
+const getTarefaById = async (req, res) => {
+    try {
+      const tarefa = await tarefaModel.getTarefaById(req.params.id);
+      if (!tarefa) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(tarefa);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-};
+  };
 
 // Criar um novo item
 const createTarefa = async (req, res) => {
@@ -34,10 +37,8 @@ const createTarefa = async (req, res) => {
     }
 };
 
-/*const createTarefa = (req, res) => {
-    const novaTarefa = tarefaModel.createTarefa(req.body.nomeTarefa);
-    res.status(201).json(novaTarefa);
-};*/
+
+
 
 const updateTarefa = (req, res) => {
     const tarefaId = parseInt(req.params.id);
@@ -49,11 +50,21 @@ const updateTarefa = (req, res) => {
     }
 };
 
-const deleteTarefa = (req, res) => {
-    const tarefaId = parseInt(req.params.id);
-    tarefaModel.deleteTarefa(tarefaId);
-    res.status(204).send();
+
+// Deletar um item pelo ID
+const deleteTarefa = async (req, res) => {
+    try {
+        const removeTarefa = await tarefaModel.deleteTarefa(parseInt(req.params.id));
+        if (removeTarefa) {
+            res.status(204).send();
+        } else {
+            res.status(404).json({ message: 'Tarefa não encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao deletar tarefa', error });
+    }
 };
+
 
 // Exportando as funções do Controller
 module.exports = {
