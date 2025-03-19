@@ -3,12 +3,14 @@ const tarefaModel = require('../model/tarefaModel');
 
 // Funções do Controller
 
-const getAllTarefas = (req, res) => {
-    const tarefas = tarefaModel.getAllTarefas();
-    // Simulação de list comprehension (usando map)
-    const tarefaNomes = tarefas.map(tarefa => tarefa.nomeTarefa); 
-    res.json({ tarefas, nomes: tarefaNomes });
-};
+const getAllTarefas = async (req, res) => {
+        try {
+          const tarefas = await tarefaModel.getAllTarefas();
+          res.status(200).json(tarefas);
+        } catch (error) {
+          res.status(500).json({ error: error.message });
+        }
+      };
 
 const getTarefaById = (req, res) => {
     const tarefa = tarefaModel.getTarefaById(parseInt(req.params.id));

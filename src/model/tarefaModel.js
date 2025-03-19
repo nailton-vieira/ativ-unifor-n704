@@ -1,11 +1,19 @@
 
-//let data = [
+let data = [
 
    // { id: 1, nomeTarefa: 'Estudar' },
     //{ id: 2, nomeTarefa: 'codar' },
     
-//];
+];
 
+const pool = require('../Utils/db');
+
+const getAllTarefas = async () => {
+
+    const result = await pool.query('SELECT * FROM tarefas_tb ORDER BY id');
+    return result.rows;
+
+}
 // Função de alta ordem: retorna uma função para gerar IDs
 const createIdGenerator = () => {
     let lastId = data.length > 0 ? Math.max(...data.map(tarefa => tarefa.id)) : 0;
@@ -37,13 +45,14 @@ const updateTarefaById = createUpdater('id'); // Usando a função de alta ordem
 
 // Exportando as funções do Model
 module.exports = {
-    getAllTarefas: () => data,
+    getAllTarefas,
+   /* getAllTarefas: () => data,
     getTarefaById: findTarefaById,
     createTarefa: (nomeTarefa) => {
         const novaTarefa = { id: generateId(), nomeTarefa };
         data = [...data, novaTarefa];
         return novaTarefa;
-    },
+    },*/
     updateTarefa: updateTarefaById,
     deleteTarefa: removeTarefaById,
 };
