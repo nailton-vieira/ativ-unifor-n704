@@ -4,7 +4,7 @@ const tarefaModel = require('../model/tarefaModel');
 // Funções do Controller
 
 //Obter todas tarefas
-/*Aqui, 'getTarefas' é uma função lambda (arrow function) atribuida a uma constante
+/*Aqui, 'getTarefas' é uma função Lambda (arrow function) atribuida a uma constante
 e simplifica a sintaxe*/
 const getTarefas = async (req, res) => {
         try {
@@ -70,6 +70,31 @@ const deleteTarefa = async (req, res) => {
 };
 
 
+// List comprehension simulada com map
+const getTarefaNomes = async (req, res) => {
+  try {
+    const tarefas = await tarefaModel.getAllTarefas();
+    const tarefasNomes = tarefas.map(tarefa => tarefa.nometarefa); // Simulação de list comprehension
+    res.status(200).json(tarefasNomes);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+//Busca por Filtro
+const getTarefasByFilter = async (req, res) => {
+
+  try {
+    const filters = req.query; // Filtros passados na query string
+    const filtroTarefas = await tarefaModel.getTarefasByFilter(filters);
+    res.status(200).json(filtroTarefas);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 // Exportando as funções do Controller
 module.exports = {
     getTarefas,
@@ -77,4 +102,6 @@ module.exports = {
     createTarefa,
     updateTarefa,
     deleteTarefa,
+    getTarefaNomes,
+    getTarefasByFilter,
 };

@@ -47,6 +47,31 @@ const deleteTarefa = async (id) => {
 };
 
 
+const createTarefaQuery = (filters) => {
+ return (tarefa) => {
+    const filtersEntries = Object.entries(filters);
+    return filtersEntries.every(([key, value]) => tarefa[key] === value);
+
+ };
+};
+
+
+// Função de alta ordem com closure
+const getTarefasFilter = async (filters) => {
+   // Valida os filtros
+  const validFilters = {};
+  for (const [key, value] of Object.entries(filters)) {
+    if (['nometarefa', 'descricao'].includes(key)) { // Apenas permite filtrar por nome e e-mail
+      validFilters[key] = value;
+    }
+  }
+    const tarefas = await getAllTarefas();
+    const filtertFunction = createTarefaQuery(validFilters); //Aqui o uso do Closure.
+    return tarefas.filter(filtertFunction);
+    
+};
+
+
 // Exportando as funções do Model
 module.exports = {
     getAllTarefas,
@@ -54,4 +79,6 @@ module.exports = {
     getTarefaById,
     updateTarefa,
     deleteTarefa,
+    getTarefasFilter,
+  
 };
