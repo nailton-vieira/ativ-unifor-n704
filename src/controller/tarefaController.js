@@ -3,6 +3,7 @@ const tarefaModel = require('../model/tarefaModel');
 
 // Funções do Controller
 
+//Obter todas tarefas
 const getAllTarefas = async (req, res) => {
         try {
           const tarefas = await tarefaModel.getAllTarefas();
@@ -11,6 +12,8 @@ const getAllTarefas = async (req, res) => {
           res.status(500).json({ error: error.message });
         }
       };
+
+
 
 const getTarefaById = (req, res) => {
     const tarefa = tarefaModel.getTarefaById(parseInt(req.params.id));
@@ -21,10 +24,20 @@ const getTarefaById = (req, res) => {
     }
 };
 
-const createTarefa = (req, res) => {
+// Criar um novo item
+const createTarefa = async (req, res) => {
+    try {
+        const novaTarefa = await tarefaModel.createTarefa(req.body.novaTarefa);
+        res.status(201).json(novaTarefa);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao criar nova tarefa', error });
+    }
+};
+
+/*const createTarefa = (req, res) => {
     const novaTarefa = tarefaModel.createTarefa(req.body.nomeTarefa);
     res.status(201).json(novaTarefa);
-};
+};*/
 
 const updateTarefa = (req, res) => {
     const tarefaId = parseInt(req.params.id);

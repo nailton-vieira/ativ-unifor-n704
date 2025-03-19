@@ -14,6 +14,18 @@ const getAllTarefas = async () => {
     return result.rows;
 
 }
+
+
+// Cria uma nova tarefa
+
+const createTarefa = async (nomeTarefa) => {
+    const result = await pool.query(
+        'INSERT INTO tarefas_tb (nometarefa) VALUES ($1) RETURNING *',
+        [nomeTarefa]
+    );
+    return result.rows[0];
+};
+
 // Função de alta ordem: retorna uma função para gerar IDs
 const createIdGenerator = () => {
     let lastId = data.length > 0 ? Math.max(...data.map(tarefa => tarefa.id)) : 0;
@@ -46,6 +58,7 @@ const updateTarefaById = createUpdater('id'); // Usando a função de alta ordem
 // Exportando as funções do Model
 module.exports = {
     getAllTarefas,
+    createTarefa,
    /* getAllTarefas: () => data,
     getTarefaById: findTarefaById,
     createTarefa: (nomeTarefa) => {
