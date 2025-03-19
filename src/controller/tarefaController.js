@@ -4,7 +4,9 @@ const tarefaModel = require('../model/tarefaModel');
 // Funções do Controller
 
 //Obter todas tarefas
-const getAllTarefas = async (req, res) => {
+/*Aqui, 'getTarefas' é uma função lambda (arrow function) atribuida a uma constante
+e simplifica a sintaxe*/
+const getTarefas = async (req, res) => {
         try {
           const tarefas = await tarefaModel.getAllTarefas();
           res.status(200).json(tarefas);
@@ -19,7 +21,7 @@ const getTarefaById = async (req, res) => {
     try {
       const tarefa = await tarefaModel.getTarefaById(req.params.id);
       if (!tarefa) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ message: 'Tarefa não encontrada' });
       }
       res.status(200).json(tarefa);
     } catch (error) {
@@ -30,7 +32,7 @@ const getTarefaById = async (req, res) => {
 // Criar um novo item
 const createTarefa = async (req, res) => {
     try {
-        const novaTarefa = await tarefaModel.createTarefa(req.body.novaTarefa);
+        const novaTarefa = await tarefaModel.createTarefa(req.body);
         res.status(201).json(novaTarefa);
     } catch (error) {
         res.status(500).json({ message: 'Erro ao criar nova tarefa', error });
@@ -41,7 +43,7 @@ const createTarefa = async (req, res) => {
 //Atualizar tarefas
 const updateTarefa = async (req, res) => {
   try {
-      const atualizaTarefa = await tarefaModel.updateTarefa(parseInt(req.params.id), req.body.novaTarefa);
+      const atualizaTarefa = await tarefaModel.updateTarefa(parseInt(req.params.id), req.body);
       if (atualizaTarefa) {
           res.json(atualizaTarefa);
       } else {
@@ -70,7 +72,7 @@ const deleteTarefa = async (req, res) => {
 
 // Exportando as funções do Controller
 module.exports = {
-    getAllTarefas,
+    getTarefas,
     getTarefaById,
     createTarefa,
     updateTarefa,

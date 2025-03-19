@@ -11,12 +11,13 @@ const getAllTarefas = async () => {
 
 
 // Cria uma nova tarefa
-const createTarefa = async (nomeTarefa) => {
-    const result = await pool.query(
-        'INSERT INTO tarefas_tb (nometarefa) VALUES ($1) RETURNING *',
-        [nomeTarefa]
+const createTarefa = async (tarefa) => {
+    const {nomeTarefa, descricao} = tarefa;
+    const {rows} = await pool.query(
+        'INSERT INTO tarefas_tb (nometarefa, descricao) VALUES ($1, $2) RETURNING *',
+        [nomeTarefa, descricao]
     );
-    return result.rows[0];
+    return rows[0];
 
 };
 
@@ -29,12 +30,13 @@ const getTarefaById = async (id) => {
 
 
 // Atualizar uma tarefa pelo ID
-const updateTarefa = async (id, nomeTarefa) => {
-    const result = await pool.query(
-        'UPDATE tarefas_tb SET nometarefa = $1 WHERE id = $2 RETURNING *',
-        [nomeTarefa, id]
+const updateTarefa = async (id, Tarefa) => {
+    const {nomeTarefa, descricao} = Tarefa;
+    const {rows} = await pool.query(
+        'UPDATE tarefas_tb SET nometarefa = $1, descricao = $2 WHERE id = $3 RETURNING *',
+        [descricao, nomeTarefa, id]
     );
-    return result.rows[0];
+    return rows[0];
 };
 
 
