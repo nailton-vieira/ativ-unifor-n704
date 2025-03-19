@@ -28,10 +28,10 @@ const getTarefaById = async (id) => {
 };
 
 
-// Atualizar um tarefa pelo ID
+// Atualizar uma tarefa pelo ID
 const updateTarefa = async (id, nomeTarefa) => {
     const result = await pool.query(
-        'UPDATE tabela-tb SET nometarefa = $1 WHERE id = $2 RETURNING *',
+        'UPDATE tarefas_tb SET nometarefa = $1 WHERE id = $2 RETURNING *',
         [nomeTarefa, id]
     );
     return result.rows[0];

@@ -38,16 +38,18 @@ const createTarefa = async (req, res) => {
 };
 
 
-
-
-const updateTarefa = (req, res) => {
-    const tarefaId = parseInt(req.params.id);
-    const updatedTarefa = tarefaModel.updateTarefa(tarefaId, req.body);
-    if (updatedTarefa) {
-        res.json(updatedTarefa);
-    } else {
-        res.status(404).json({ message: 'Tarefa não encontrada' });
-    }
+//Atualizar tarefas
+const updateTarefa = async (req, res) => {
+  try {
+      const atualizaTarefa = await tarefaModel.updateTarefa(parseInt(req.params.id), req.body.novaTarefa);
+      if (atualizaTarefa) {
+          res.json(atualizaTarefa);
+      } else {
+          res.status(404).json({ message: 'Tarefa não encontrado' });
+      }
+  } catch (error) {
+      res.status(500).json({ message: 'Erro ao atualizar tarefa', error });
+  }
 };
 
 
