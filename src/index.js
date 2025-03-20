@@ -1,11 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const tarefaRoutes = require('./routes/tarefaRoute');
+
 
 const app = express();
-const tarefaRoutes = require('./routes/tarefaRoute');
-// Middleware para permitir o uso de JSON no corpo das requisições
 
-app.use(express.json());
-app.use(tarefaRoutes);
+app.use(bodyParser.json());
+app.use('/api', tarefaRoutes);
 
 // Iniciar o servidor
 const PORT = 3000;

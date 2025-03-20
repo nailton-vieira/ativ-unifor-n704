@@ -3,9 +3,17 @@
 const pool = require('../Utils/db');
 
 //Obter todas tarefas
-const getAllTarefas = async () => {
+
+
+/*const getAllTarefas = async () => {
     const result = await pool.query('SELECT * FROM tarefas_tb ORDER BY id');
     return result.rows;
+
+}*/
+
+const getAllTarefas = async () => {
+    const {rows} = await pool.query('SELECT * FROM tarefas_tb ');
+    return rows;
 
 }
 
@@ -46,7 +54,7 @@ const deleteTarefa = async (id) => {
     return result.rows[0];
 };
 
-
+//Cria uma tab
 const createTarefaQuery = (filters) => {
  return (tarefa) => {
     const filtersEntries = Object.entries(filters);
@@ -61,7 +69,7 @@ const getTarefasFilter = async (filters) => {
    // Valida os filtros
   const validFilters = {};
   for (const [key, value] of Object.entries(filters)) {
-    if (['nometarefa', 'descricao'].includes(key)) { // Apenas permite filtrar por nome e e-mail
+    if (['nometarefa', 'descricao'].includes(key)) { // Apenas permite filtrar por tarefa e descricao
       validFilters[key] = value;
     }
   }

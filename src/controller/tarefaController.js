@@ -74,10 +74,13 @@ const deleteTarefa = async (req, res) => {
 const getTarefaNomes = async (req, res) => {
   try {
     const tarefas = await tarefaModel.getAllTarefas();
-    const tarefasNomes = tarefas.map(tarefa => tarefa.nometarefa); // Simulação de list comprehension
+    const tarefasNomes = tarefas.map(tarefa => tarefa.descricao); // Simulação de list comprehension
+    console.log(tarefasNomes);
     res.status(200).json(tarefasNomes);
+
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log(getTarefaNomes);
   }
 };
 

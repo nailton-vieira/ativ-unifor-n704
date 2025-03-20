@@ -1,4 +1,5 @@
-const route = require('express').Router();
+const express = require('express');
+const route = express.Router();
 
 const tarefaController = require('../controller/tarefaController.js');
 
