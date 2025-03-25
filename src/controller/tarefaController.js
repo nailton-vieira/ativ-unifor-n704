@@ -29,7 +29,8 @@ const getTarefaById = async (req, res) => {
     }
   };
 
-// Criar um novo item
+
+// Criar um nova tarefa
 const createTarefa = async (req, res) => {
     try {
         const novaTarefa = await tarefaModel.createTarefa(req.body);
@@ -55,7 +56,7 @@ const updateTarefa = async (req, res) => {
 };
 
 
-// Deletar um item pelo ID
+// Deletar uma tarefa pelo ID
 const deleteTarefa = async (req, res) => {
     try {
         const removeTarefa = await tarefaModel.deleteTarefa(parseInt(req.params.id));
@@ -70,31 +71,28 @@ const deleteTarefa = async (req, res) => {
 };
 
 
-// List comprehension simulada com map
-const getTarefaNomes = async (req, res) => {
-  try {
-    const tarefas = await tarefaModel.getAllTarefas();
-    const tarefasNomes = tarefas.map(tarefa => tarefa.descricao); // Simulação de list comprehension
-    console.log(tarefasNomes);
-    res.status(200).json(tarefasNomes);
-
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-    console.log(getTarefaNomes);
-  }
-};
-
-
 //Busca por Filtro
-const getTarefasByFilter = async (req, res) => {
+const getTarefasByCampo = async (req, res) => {
 
   try {
     const filters = req.query; // Filtros passados na query string
-    const filtroTarefas = await tarefaModel.getTarefasByFilter(filters);
+    const filtroTarefas = await tarefaModel.getTarefasCampo(filters);
     res.status(200).json(filtroTarefas);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+};
+
+
+//Filtrar tarefas por termo
+const filterTarefaByTermo = async (req, res) => {
+    try {
+        const { buscarTermo } = req.query;
+        const filtroTermo = await tarefaModel.filterByTermo(buscarTermo);
+        res.json(filtroTermo);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao filtrar tarefas', error });
+    }
 };
 
 
@@ -105,6 +103,6 @@ module.exports = {
     createTarefa,
     updateTarefa,
     deleteTarefa,
-    getTarefaNomes,
-    getTarefasByFilter,
+    getTarefasByCampo,
+    filterTarefaByTermo,
 };

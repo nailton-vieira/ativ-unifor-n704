@@ -1,0 +1,30 @@
+# ATIVIDADE DA DISCIPLINA DE PROGRAMAÇÃO FUNCIONAL #
+
+#TECNOLOGIAS UTILIZADAS#
+
+Visual Studio Code
+Node.js
+Javascript
+PostgreSQL
+
+#INSTALAR E EXECUTAR #
+1 - npm install (Para instalar dependencias)
+2 - npm run start ( Para rodar o sistema)
+
+# SOBRE A ATIVIDADE #
+A atividade foi desenvolvida com um back-end visando o cadastro e gerenciamento de tarefas
+atraves da programação funcional , com filtros dinamicos atraves de busca por campos, 
+termos contidos em determinado campo utilizando funçoes que sera descrito aqui logo abaixo.
+
+Exemplo: Buscar tarefas com status: Finalizada, Pedente ou ativa;
+         Buscar tarefas por descrição que contennha determinada palavra;
+         Buscar tarefas por nome ou Id;
+         Busca por todas as tarefas;
+
+         Obs: Foram utilizada para estas buscas filtradas o que segue abaixo descrito:
+        
+          List Comprehension: Simulada com filter + map.
+          Closure: A função retornada por createFilterDn "lembra" do filterFn.
+          Função de Alta Ordem: createFilterDn recebe e retorna funções.
+          Função Lambda (arrow function) atraves de 'getTarefas'.
+          
