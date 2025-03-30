@@ -27,4 +27,9 @@ Exemplo: Buscar tarefas com status: Finalizada, Pedente ou ativa;
           Closure: A função retornada por createFilterDn "lembra" do filterFn.
           Função de Alta Ordem: createFilterDn recebe e retorna funções.
           Função Lambda (arrow function) atraves de 'getTarefas'.
+
+# LINK DO PROJETO NO GITHUB #
+
+https://github.com/nailton-vieira/ativ-unifor-n704
+ 
           
