@@ -4,8 +4,7 @@ const tarefaModel = require('../model/tarefaModel');
 // Funções do Controller
 
 //Obter todas tarefas
-/*Aqui, 'getTarefas' é uma função Lambda (arrow function) atribuida a uma constante
-e simplifica a sintaxe*/
+
 const getTarefas = async (req, res) => {
         try {
           const tarefas = await tarefaModel.getAllTarefas();
