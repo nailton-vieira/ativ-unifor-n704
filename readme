@@ -21,13 +21,7 @@ Exemplo: Buscar tarefas com status: Finalizada, Pedente ou ativa;
          Buscar tarefas por nome ou Id;
          Busca por todas as tarefas;
 
-         Obs: Foram utilizada para estas buscas filtradas o que segue abaixo descrito:
         
-          List Comprehension: Simulada com filter + map.
-          Closure: A função retornada por createFilterDn "lembra" do filterFn.
-          Função de Alta Ordem: createFilterDn recebe e retorna funções.
-          Função Lambda (arrow function)
-
 # LINK DO PROJETO NO GITHUB #
 
 https://github.com/nailton-vieira/ativ-unifor-n704
