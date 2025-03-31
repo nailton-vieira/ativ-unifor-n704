@@ -26,7 +26,7 @@ Exemplo: Buscar tarefas com status: Finalizada, Pedente ou ativa;
           List Comprehension: Simulada com filter + map.
           Closure: A função retornada por createFilterDn "lembra" do filterFn.
           Função de Alta Ordem: createFilterDn recebe e retorna funções.
-          Função Lambda (arrow function) atraves de 'getTarefas'.
+          Função Lambda (arrow function)
 
 # LINK DO PROJETO NO GITHUB #
 
